@@ -5,8 +5,10 @@
 
 body {
     background-color: #f5f5f5;
-    margin: 5vw 10vh;
+    margin: 5vh 20vw;
     overflow: hidden;
+    max-height: 80vh;
+    height: 80vh;
     display: flex;
 }
 
@@ -18,15 +20,13 @@ nav {
     height: 85vh;
 }
 
-/*TODO this thing is not the way... It is too general and is causing misalignment. The "content" should be
-    padded along with the header, but the job list should not. However they are all containers. I think
-    I think if I just move padding we will be ok. since the color boarder are best here. White space
-    is also overloaded a bit. */
-.container {
+.card {
     background-color: #fff;
     border-radius: 10px;
-    padding: 2vh 2vw;
-    white-space: nowrap;
+}
+
+.card + .card {
+    margin-top: 5%;
 }
 
 .job-list {
@@ -50,8 +50,15 @@ nav {
     background-color: #e0e0e0
 }
 
-.container + .container {
-    margin-top: 5%;
+.contact-content {
+    white-space: nowrap;
+    padding: 2vh 2vw;
+}
+
+.view-container {
+    max-height: 85vh;
+    height: 85vh;
+    overflow-y: scroll;
 }
 
 .content {
@@ -59,6 +66,7 @@ nav {
     flex-direction: column;
     max-height: 85vh;
     height: 85vh;
+    padding: 2vh 2vw;
 }
 
 .content > p {
