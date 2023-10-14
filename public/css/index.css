@@ -1,0 +1,70 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: #f5f5f5;
+    margin: 5vw 10vh;
+    overflow: hidden;
+    display: flex;
+}
+
+nav {
+    display: flex;
+    flex-direction: column;
+    margin-right: 2%;
+    max-height: 85vh;
+    height: 85vh;
+}
+
+/*TODO this thing is not the way... It is too general and is causing misalignment. The "content" should be
+    padded along with the header, but the job list should not. However they are all containers. I think
+    I think if I just move padding we will be ok. since the color boarder are best here. White space
+    is also overloaded a bit. */
+.container {
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 2vh 2vw;
+    white-space: nowrap;
+}
+
+.job-list {
+    flex-grow: 70;
+    padding: 0;
+    overflow-y: scroll;
+}
+
+.job-list > div {
+    padding: 0;
+}
+
+.job-list > div > div {
+    padding: 20px;
+}
+.job-list > div > h1 {
+    padding: 20px 20px 0 20px;
+}
+
+.nav-selected {
+    background-color: #e0e0e0
+}
+
+.container + .container {
+    margin-top: 5%;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    max-height: 85vh;
+    height: 85vh;
+}
+
+.content > p {
+    white-space: normal;
+}
+
+.content > p + p {
+    margin-top: 20px;
+}
