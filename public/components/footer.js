@@ -7,7 +7,7 @@ class Footer extends HTMLElement {
         super();
         this.attachShadow({ mode: "open" });
         const template = document.createElement("template");
-        fetch("./js/footer.html").then((res) =>
+        fetch("/components/footer.html").then((res) =>
             res.text().then((html) => {
                 template.innerHTML = html;
                 let content = template.content.cloneNode(true);
