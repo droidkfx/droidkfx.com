@@ -1,24 +1,20 @@
-const template = document.createElement("template");
+const publishYear = 2023;
+const year = new Date().getFullYear();
 
 class Footer extends HTMLElement {
     static observedAttributes = ["color", "size"];
     constructor() {
         super();
         this.attachShadow({ mode: "open" });
-        // const style = new CSSStyleSheet();
         const template = document.createElement("template");
-
-        // fetch("./js/footer.css").then((res) =>
-        //     res.text().then((css) => {
-        //         style.replaceSync(css);
-        //         this.shadowRoot.adoptedStyleSheets = [style];
-        //     })
-        // );
-
         fetch("./js/footer.html").then((res) =>
             res.text().then((html) => {
                 template.innerHTML = html;
-                this.shadowRoot.appendChild(template.content.cloneNode(true));
+                let content = template.content.cloneNode(true);
+                if (year > publishYear) {
+                    content.getRootNode().querySelector("#year").innerHTML = `${publishYear} - ${year}`;
+                }
+                this.shadowRoot.appendChild(content);
             })
         );
     }
