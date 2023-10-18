@@ -1,3 +1,4 @@
 footer {
-    background-color: #333;
+    justify-content: center;
+    display: flex;
 }

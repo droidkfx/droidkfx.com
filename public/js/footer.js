@@ -5,7 +5,7 @@ class Footer extends HTMLElement {
     constructor() {
         super();
         this.attachShadow({ mode: "open" });
-        const style = new CSSStyleSheet();
+        // const style = new CSSStyleSheet();
         const template = document.createElement("template");
 
         // fetch("./js/footer.css").then((res) =>
@@ -35,7 +35,8 @@ class Footer extends HTMLElement {
         console.log("Custom element moved to new page.");
     }
 
-    attributeChangedCallback(name, oldValue, newValue) {
+    // attributeChangedCallback(name, oldValue, newValue) {
+    attributeChangedCallback(name) {
         console.log(`Attribute ${name} has changed.`);
     }
 }
