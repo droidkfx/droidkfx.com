@@ -11,7 +11,7 @@ class JobEntry extends HTMLElement {
             <link rel="stylesheet" href="/css/reset.css">
             <style>
                 .job-entry {
-                    padding: 20px;
+                    padding: 0 0 1vh 2vw;
                 }
             </style>
             <div class="job-entry">
