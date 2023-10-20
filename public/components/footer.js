@@ -3,9 +3,10 @@ const year = new Date().getFullYear();
 
 class Footer extends HTMLElement {
     static observedAttributes = ["color", "size"];
+
     constructor() {
         super();
-        this.attachShadow({ mode: "open" });
+        this.attachShadow({mode: "open"});
         const template = document.createElement("template");
         fetch("/components/footer.html").then((res) =>
             res.text().then((html) => {
