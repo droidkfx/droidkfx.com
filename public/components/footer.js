@@ -1,6 +1,5 @@
 class Footer extends HTMLElement {
     static publishYear = 2023;
-    static year = new Date().getFullYear();
 
     constructor() {
         super();
@@ -8,9 +7,10 @@ class Footer extends HTMLElement {
 
     // noinspection JSUnusedGlobalSymbols
     connectedCallback() {
-        let year = `${Footer.year}`;
-        if (Footer.year > Footer.publishYear) {
-           year = `${(Footer.publishYear)} - ${(Footer.year)}`;
+        let fullYear = new Date().getFullYear();
+        let yearString = `${fullYear}`;
+        if (fullYear > Footer.publishYear) {
+           yearString = `${(Footer.publishYear)} - ${fullYear}`;
         }
 
         const template = document.createElement("template");
@@ -23,7 +23,7 @@ class Footer extends HTMLElement {
                 }   
             </style>
             <footer>
-                <p>© <span id="year">${year}</span> Kyle Brown, Content available under <a href="/../LICENSE"> MIT License</a></p>
+                <p>© <span id="year">${yearString}</span> Kyle Brown, Content available under <a href="/../LICENSE"> MIT License</a></p>
             </footer>
         `;
 
