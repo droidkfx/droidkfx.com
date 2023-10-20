@@ -37,15 +37,6 @@ main {
 }
 
 .job-list > div > h1 {
-    padding: 20px 20px 0 20px;
-}
-
-.nav-selected {
-    background-color: #e0e0e0
-}
-
-.contact-content {
-    white-space: nowrap;
     padding: 2vh 2vw;
 }
 

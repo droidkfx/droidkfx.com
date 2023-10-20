@@ -13,6 +13,9 @@ class JobEntry extends HTMLElement {
                 .job-entry {
                     padding: 0 0 1vh 2vw;
                 }
+                .nav-selected {
+                    background-color: #e0e0e0
+                }
             </style>
             <div class="job-entry">
                 <h4>${this.getAttribute("title")}</h4>
