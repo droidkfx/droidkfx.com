@@ -1,40 +1,34 @@
-const publishYear = 2023;
-const year = new Date().getFullYear();
-
 class Footer extends HTMLElement {
-    static observedAttributes = ["color", "size"];
+    static publishYear = 2023;
+    static year = new Date().getFullYear();
 
     constructor() {
         super();
-        this.attachShadow({mode: "open"});
-        const template = document.createElement("template");
-        fetch("/components/footer.html").then((res) =>
-            res.text().then((html) => {
-                template.innerHTML = html;
-                let content = template.content.cloneNode(true);
-                if (year > publishYear) {
-                    content.getRootNode().querySelector("#year").innerHTML = `${publishYear} - ${year}`;
-                }
-                this.shadowRoot.appendChild(content);
-            })
-        );
     }
 
+    // noinspection JSUnusedGlobalSymbols
     connectedCallback() {
-        console.log("Custom element added to page.");
-    }
+        let year = `${Footer.year}`;
+        if (Footer.year > Footer.publishYear) {
+           year = `${(Footer.publishYear)} - ${(Footer.year)}`;
+        }
 
-    disconnectedCallback() {
-        console.log("Custom element removed from page.");
-    }
+        const template = document.createElement("template");
+        template.innerHTML = `
+            <link href="/css/reset.css" rel="stylesheet">
+            <style>
+                footer {
+                    justify-content: center;
+                    display: flex;
+                }   
+            </style>
+            <footer>
+                <p>© <span id="year">${year}</span> Kyle Brown, Content available under <a href="/../LICENSE"> MIT License</a></p>
+            </footer>
+        `;
 
-    adoptedCallback() {
-        console.log("Custom element moved to new page.");
-    }
-
-    // attributeChangedCallback(name, oldValue, newValue) {
-    attributeChangedCallback(name) {
-        console.log(`Attribute ${name} has changed.`);
+        this.attachShadow({mode: "open"});
+        this.shadowRoot.appendChild(template.content.cloneNode(true));
     }
 }
 
