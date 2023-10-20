@@ -10,7 +10,7 @@ class Footer extends HTMLElement {
         let fullYear = new Date().getFullYear();
         let yearString = `${fullYear}`;
         if (fullYear > Footer.publishYear) {
-           yearString = `${(Footer.publishYear)} - ${fullYear}`;
+            yearString = `${(Footer.publishYear)} - ${fullYear}`;
         }
 
         const template = document.createElement("template");
