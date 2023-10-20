@@ -1,5 +1,10 @@
 class ContactCard extends HTMLElement {
     constructor() {
+        super();
+    }
+
+    // noinspection JSUnusedGlobalSymbols
+    connectedCallback() {
         const template = document.createElement("template");
         template.innerHTML = `
             <link rel="stylesheet" href="/css/reset.css">
@@ -23,7 +28,6 @@ class ContactCard extends HTMLElement {
             </div>
         `;
 
-        super();
         this.attachShadow({mode: "open"});
         this.shadowRoot.appendChild(template.content.cloneNode(true));
     }
