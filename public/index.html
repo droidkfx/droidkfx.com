@@ -7,6 +7,7 @@
     <script src="components/footer.js" type="application/javascript"></script>
     <script src="components/contact-card.js" type="application/javascript"></script>
     <script src="components/job-entry.js" type="application/javascript"></script>
+    <script src="components/job-list.js" type="application/javascript"></script>
     <link href="css/reset.css" rel="stylesheet">
     <link href="css/card.css" rel="stylesheet">
     <link href="css/index.css" rel="stylesheet">
@@ -15,61 +16,7 @@
 <main>
     <div class="side-bar">
         <x-contact-card class="card"></x-contact-card>
-        <div class="card job-list">
-            <div>
-                <h1>Stash</h1>
-                <x-job-entry
-                        location="Remote"
-                        time="Oct 2022 - Present"
-                        title="Software Engineering Manager">
-                </x-job-entry>
-                <x-job-entry
-                        location="Remote"
-                        time="Apr 2021 - Oct 2022"
-                        title="Senior Software Engineer">
-                </x-job-entry>
-            </div>
-            <hr/>
-            <hr/>
-            <div>
-                <h1>SoFi</h1>
-                <x-job-entry
-                        location="Salt Lake City, Utah"
-                        time="Oct 2019 - Mar 2021"
-                        title="Software Engineer">
-                </x-job-entry>
-            </div>
-            <hr/>
-            <hr/>
-            <div>
-                <h1>InsideSales.com</h1>
-                <x-job-entry
-                        location="Salt Lake City, Utah"
-                        time="Sep 2018 - Sep 2019"
-                        title="Software Engineer">
-                </x-job-entry>
-            </div>
-            <hr/>
-            <hr/>
-            <div>
-                <h1>Motorola Solutions</h1>
-                <x-job-entry
-                        location="Salt Lake City, Utah"
-                        time="May 2017 - Sep 2018"
-                        title="Junior Software Engineer">
-                </x-job-entry>
-            </div>
-            <hr/>
-            <hr/>
-            <div>
-                <h1>FedEx Ground</h1>
-                <x-job-entry
-                        location="Salt Lake City, Utah"
-                        time="May 2017 - Sep 2018"
-                        title="Operations Administrator">
-                </x-job-entry>
-            </div>
-        </div>
+        <x-job-list class="card"></x-job-list>
     </div>
     <div class="card view-container">
         <div class="content">

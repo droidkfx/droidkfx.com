@@ -22,22 +22,10 @@ main {
     height: 85vh;
 }
 
-.job-list {
+x-job-list {
     flex-grow: 70;
     padding: 0;
     overflow-y: scroll;
-}
-
-.job-list > div {
-    padding: 0;
-}
-
-.job-list > div > div {
-    padding: 20px;
-}
-
-.job-list > div > h1 {
-    padding: 2vh 2vw;
 }
 
 .view-container {
