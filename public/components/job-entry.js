@@ -1,7 +1,7 @@
 class JobEntry extends HTMLElement {
-    constructor() {
+    constructor(position) {
         super();
-
+        this._position = position;
     }
 
     // noinspection JSUnusedGlobalSymbols
@@ -18,14 +18,14 @@ class JobEntry extends HTMLElement {
                 }
             </style>
             <div class="job-entry">
-                <h4>${this.getAttribute("title")}</h4>
-                <p>${this.getAttribute("location")}</p>
-                <p>${this.getAttribute("time")}</p>
+                <h4>${this._position.title}</h4>
+                <p>${this._position.location}</p>
+                <p>${this._position.time}</p>
             </div>
         `;
 
         this.attachShadow({mode: "open"});
-        this.shadowRoot.appendChild(template.content.cloneNode(true));
+        this.shadowRoot.appendChild(template.content);
     }
 }
 
