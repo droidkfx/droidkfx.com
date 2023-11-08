@@ -34,18 +34,11 @@ x-job-list {
     overflow-y: scroll;
 }
 
-.content {
-    display: flex;
-    flex-direction: column;
-    max-height: 85vh;
-    height: 85vh;
-    padding: 2vh 2vw;
+.card {
+    background-color: #fff;
+    border-radius: 10px;
 }
 
-.content > p {
-    white-space: normal;
-}
-
-.content > p + p {
-    margin-top: 20px;
+.card + .card {
+    margin-top: 5%;
 }

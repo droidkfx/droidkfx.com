@@ -43,7 +43,6 @@ class JobList extends HTMLElement {
         const template = document.createElement("template");
         template.innerHTML = `
             <link rel="stylesheet" href="/css/reset.css">
-            <link rel="stylesheet" href="/css/card.css">
             <style>
                 .entry-header {
                     padding: 2vh 2vw;
