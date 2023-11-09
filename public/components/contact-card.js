@@ -1,8 +1,10 @@
 console.debug("Loading contact-card.js");
 
 export class ContactCard extends HTMLElement {
-    constructor() {
+    constructor(data) {
         super();
+
+        this._data = data
     }
 
     // noinspection JSUnusedGlobalSymbols
@@ -17,15 +19,15 @@ export class ContactCard extends HTMLElement {
                 }
             </style>
             <div class="contact-content">
-                <h1>Kyle Brown</h1>
-                <h2>Senior Software Engineer</h2>
+                <h1>${this._data.name}</h1>
+                <h2>${this._data.title}</h2>
                 <br/>
-                <p>Locale: <span>Texas, USA</span></p>
-                <p>Cell: <span>(385)-888-6015</span></p>
-                <p>Email: <span>kam157190@gmail.com</span></p>
+                <p>Locale: <span>${this._data.locale}</span></p>
+                <p>Cell: <span>${this._data.cell}</span></p>
+                <p>Email: <span>${this._data.email}</span></p>
                 <p>
-                    <span><a href="https://www.linkedin.com/in/kyle-brown-25148286/">LinkedIn</a></span>
-                    | <span><a href="https://github.com/droidkfx">GitHub</a></span>
+                    <span><a href="${this._data.linkedIn}">LinkedIn</a></span>
+                    | <span><a href="${this._data.gitHub}">GitHub</a></span>
                 </p>
             </div>
         `;

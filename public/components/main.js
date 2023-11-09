@@ -1,7 +1,10 @@
-import "./contact-card.js";
 import "./content-container.js";
 import "./footer.js";
-import "./job-list.js";
+
+import contact from "/data/contact.json" assert {type: "json"};
+import rData from "/data/resume-data.json" assert {type: "json"};
+import {ContactCard} from "./contact-card.js";
+import {JobList} from "./job-list.js";
 
 console.debug("Loading main.js");
 
@@ -53,14 +56,17 @@ export class Main extends HTMLElement {
                 }
             </style>
             <main>
-                <div class="side-bar">
-                    <x-contact-card class="card"></x-contact-card>
-                    <x-job-list class="card"></x-job-list>
+                <div class="side-bar" id="side-bar">
+                    <!-- fill in data elements -->
                 </div>
                 <x-content-container class="card view-container"></x-content-container>
             </main>
             <x-footer></x-footer>
         `;
+
+        let sideBar = template.content.querySelector("#side-bar")
+        sideBar.append(new ContactCard(contact))
+        sideBar.append(new JobList(rData))
 
         this.attachShadow({mode: "open"});
         this.shadowRoot.appendChild(template.content);
