@@ -7,38 +7,3 @@ body {
     display: flex;
     flex-direction: column;
 }
-
-main {
-    display: flex;
-    flex-direction: row;
-    height: 100%;
-}
-
-.side-bar {
-    display: flex;
-    flex-direction: column;
-    margin-right: 2%;
-    max-height: 85vh;
-    height: 85vh;
-}
-
-x-job-list {
-    flex-grow: 70;
-    padding: 0;
-    overflow-y: scroll;
-}
-
-.view-container {
-    max-height: 85vh;
-    height: 85vh;
-    overflow-y: scroll;
-}
-
-.card {
-    background-color: #fff;
-    border-radius: 10px;
-}
-
-.card + .card {
-    margin-top: 5%;
-}

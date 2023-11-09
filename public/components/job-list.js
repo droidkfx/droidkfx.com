@@ -1,4 +1,8 @@
-class JobList extends HTMLElement {
+import {JobEntry} from "./job-entry.js";
+
+console.debug("Loading job-list.js");
+
+export class JobList extends HTMLElement {
     constructor() {
         super();
 
@@ -42,6 +46,7 @@ class JobList extends HTMLElement {
     connectedCallback() {
         const template = document.createElement("template");
         template.innerHTML = `
+            <script src="components/job-entry.js" type="application/javascript"></script>
             <link rel="stylesheet" href="/css/reset.css">
             <style>
                 .entry-header {

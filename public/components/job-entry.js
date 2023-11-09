@@ -1,4 +1,6 @@
-class JobEntry extends HTMLElement {
+console.debug("Loading job-entry.js");
+
+export class JobEntry extends HTMLElement {
     constructor(position) {
         super();
         this._position = position;

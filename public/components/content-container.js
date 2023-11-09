@@ -1,8 +1,11 @@
-class ContentContainer extends HTMLElement {
+console.debug("Loading content-container.js");
+
+export class ContentContainer extends HTMLElement {
     constructor() {
         super();
     }
 
+    // noinspection JSUnusedGlobalSymbols
     connectedCallback() {
         const template = document.createElement("template");
         template.innerHTML = `

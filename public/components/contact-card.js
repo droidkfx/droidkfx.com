@@ -1,4 +1,6 @@
-class ContactCard extends HTMLElement {
+console.debug("Loading contact-card.js");
+
+export class ContactCard extends HTMLElement {
     constructor() {
         super();
     }

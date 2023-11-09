@@ -4,22 +4,29 @@
     <meta charset="UTF-8">
     <title>Kyle Brown</title>
 
-    <script src="components/footer.js" type="application/javascript"></script>
-    <script src="components/contact-card.js" type="application/javascript"></script>
-    <script src="components/job-entry.js" type="application/javascript"></script>
-    <script src="components/job-list.js" type="application/javascript"></script>
-    <script src="components/content-container.js" type="application/javascript"></script>
+    <script src="components/main.js" type="module"></script>
     <link href="css/reset.css" rel="stylesheet">
     <link href="css/index.css" rel="stylesheet">
 </head>
 <body>
-<main>
-    <div class="side-bar">
-        <x-contact-card class="card"></x-contact-card>
-        <x-job-list class="card"></x-job-list>
-    </div>
-    <x-content-container class="card view-container"></x-content-container>
-</main>
-<x-footer/>
+<x-main></x-main>
+<noscript style="display: flex; flex-direction: column">
+    <p>
+        Hi, this website uses <a href="https://developer.mozilla.org/en-US/docs/Web/API/Web_components">HTML web
+        components</a> to do its thing. You must enable javascript to explore here. If you are not comfortable with that
+        no hard feelings. I would offer an alternative to my LinkedIn but that site will also stop working if you don't
+        have js enabled. You will find it hard to find a website that doesn't require js these days.
+    </p>
+    <br>
+    <p>
+        If you are still interested in seeing my work you check out my resume as a PDF <a href="resume.pdf">here</a>
+    </p>.
+    <br>
+    <!--    TODO: since assets are private we should have a fallback. This can be done in CS alone here-->
+    <!--    https://stackoverflow.com/questions/980855/inputting-a-default-image-in-case-the-src-attribute-of-an-html-img-is-not-vali-->
+    <img alt="Am I out of touch? No, it is the javascript that sucks."
+         src="assets/no-js.png"
+         style="height: 60vh; object-fit: contain"/>
+</noscript>
 </body>
 </html>

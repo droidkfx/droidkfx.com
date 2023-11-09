@@ -1,4 +1,6 @@
-class Footer extends HTMLElement {
+console.debug("Loading footer.js")
+
+export class Footer extends HTMLElement {
     static publishYear = 2023;
 
     constructor() {
