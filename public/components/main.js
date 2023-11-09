@@ -1,6 +1,7 @@
 import "./content-container.js";
 import "./footer.js";
-
+import reset from "/css/reset.css" assert {type: "css"}
+import style from "/css/main.css" assert {type: "css"}
 import contact from "/data/contact.json" assert {type: "json"};
 import rData from "/data/resume-data.json" assert {type: "json"};
 import {ContactCard} from "./contact-card.js";
@@ -18,43 +19,6 @@ export class Main extends HTMLElement {
         const template = document.createElement("template");
 
         template.innerHTML = `
-            <link rel="stylesheet" href="/css/reset.css">
-            <style>
-                main {
-                    display: flex;
-                    flex-direction: row;
-                    height: 100%;
-                }
-                
-                .side-bar {
-                    display: flex;
-                    flex-direction: column;
-                    margin-right: 2%;
-                    max-height: 85vh;
-                    height: 85vh;
-                }
-                
-                x-job-list {
-                    flex-grow: 70;
-                    padding: 0;
-                    overflow-y: scroll;
-                }
-                
-                .view-container {
-                    max-height: 85vh;
-                    height: 85vh;
-                    overflow-y: scroll;
-                }
-                
-                .card {
-                    background-color: #fff;
-                    border-radius: 10px;
-                }
-                
-                .card + .card {
-                    margin-top: 5%;
-                }
-            </style>
             <main>
                 <div class="side-bar" id="side-bar">
                     <!-- fill in data elements -->
@@ -69,6 +33,7 @@ export class Main extends HTMLElement {
         sideBar.append(new JobList(rData))
 
         this.attachShadow({mode: "open"});
+        this.shadowRoot.adoptedStyleSheets = [reset, style]
         this.shadowRoot.appendChild(template.content);
     }
 }
