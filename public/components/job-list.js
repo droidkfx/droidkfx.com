@@ -17,11 +17,14 @@ export class JobList extends HTMLElement {
             <link rel="stylesheet" href="/css/reset.css">
             <style>
                 .entry-header {
-                    padding: 2vh 2vw;
+                    padding: 1vh 2vw;
                 }
-                .job-list > div {
+                .job-list-entry {
                     padding: 0;
-                }      
+                }     
+                .job-list-entry:hover { 
+                    background-color: #e0e0e0;
+                } 
             </style>
             <div class="job-list" id="list-elem">
                 <!-- entries to be rendered here -->
@@ -40,6 +43,7 @@ export class JobList extends HTMLElement {
         let items = [];
         this._data.forEach(elem => {
             let div = document.createElement("div");
+            div.setAttribute("class", "job-list-entry");
             let header = document.createElement("h1");
             header.setAttribute("class", "entry-header");
             header.innerText = elem.company;
