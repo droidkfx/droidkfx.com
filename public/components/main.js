@@ -29,8 +29,14 @@ export class Main extends HTMLElement {
         `;
 
         let sideBar = template.content.querySelector("#side-bar")
-        sideBar.append(new ContactCard(contact))
-        sideBar.append(new JobList(rData))
+
+        let contactCard = new ContactCard(contact);
+        contactCard.className = "card"
+        sideBar.append(contactCard)
+
+        let jobList = new JobList(rData);
+        jobList.className = "card"
+        sideBar.append(jobList)
 
         this.attachShadow({mode: "open"});
         this.shadowRoot.adoptedStyleSheets = [reset, style]
