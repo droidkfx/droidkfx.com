@@ -1,10 +1,12 @@
 
 .entry-header {
     padding: 1vh 2vw;
+    white-space: nowrap;
 }
 
 .job-list-entry {
     padding: 0;
+    white-space: nowrap;
 }
 
 .job-list-entry:not(.selected):hover {
