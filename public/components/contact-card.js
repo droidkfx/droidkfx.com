@@ -18,19 +18,35 @@ export class ContactCard extends HTMLElement {
                     padding: 2vh 2vw;
                 }
             </style>
-            <div class="contact-content">
-                <h1>${this._data.name}</h1>
-                <h2>${this._data.title}</h2>
+            <div class="contact-content" id="content">
+                <h1>${this._data.title}</h1>
+                <h2>${this._data.subtitle}</h2>
                 <br/>
-                <p>Locale: <span>${this._data.locale}</span></p>
-                <p>Cell: <span>${this._data.cell}</span></p>
-                <p>Email: <span>${this._data.email}</span></p>
-                <p>
-                    <span><a href="${this._data.linkedIn}">LinkedIn</a></span>
-                    | <span><a href="${this._data.gitHub}">GitHub</a></span>
-                </p>
+                <!-- detail rows here -->
             </div>
         `;
+
+        let div = template.content.querySelector("#content")
+        for (const [key, value] of Object.entries(this._data.details)) {
+            let p = document.createElement("p")
+            p.innerHTML = `${key}: <span>${value}</span>`
+            div.appendChild(p)
+        }
+
+        let links = document.createElement("p")
+        div.appendChild(links)
+        let first = true;
+        for (const [key, value] of Object.entries(this._data.links)) {
+            let span = document.createElement("span")
+            if (first) {
+                first = false;
+            } else {
+                span.innerHTML = " | "
+            }
+            span.innerHTML += `<a href="${value}">${key}</a>`
+            links.appendChild(span)
+        }
+
 
         this.attachShadow({mode: "open"});
         this.shadowRoot.appendChild(template.content);
