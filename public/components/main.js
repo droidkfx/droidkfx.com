@@ -1,5 +1,6 @@
 import "./content-container.js";
 import "./footer.js";
+import d_theme from "/css/default-theme.css" assert {type: "css"}
 import reset from "/css/reset.css" assert {type: "css"}
 import style from "/css/main.css" assert {type: "css"}
 import contact from "/data/contact.json" assert {type: "json"};
@@ -39,7 +40,7 @@ export class Main extends HTMLElement {
         sideBar.append(jobList)
 
         this.attachShadow({mode: "open"});
-        this.shadowRoot.adoptedStyleSheets = [reset, style]
+        this.shadowRoot.adoptedStyleSheets = [d_theme, reset, style]
         this.shadowRoot.appendChild(template.content);
     }
 }

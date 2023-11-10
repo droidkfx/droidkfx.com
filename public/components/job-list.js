@@ -1,4 +1,7 @@
 import {JobEntry} from "./job-entry.js";
+import d_theme from "/css/default-theme.css" assert {type: "css"}
+import reset from "/css/reset.css" assert {type: "css"}
+import style from "/css/job-list.css" assert {type: "css"}
 
 console.debug("Loading job-list.js");
 
@@ -7,45 +10,30 @@ export class JobList extends HTMLElement {
         super();
 
         this._data = data;
+        this._activeEntry = null;
     }
     
     // noinspection JSUnusedGlobalSymbols
     connectedCallback() {
-        const template = document.createElement("template");
-        template.innerHTML = `
-            <script src="components/job-entry.js" type="application/javascript"></script>
-            <link rel="stylesheet" href="/css/reset.css">
-            <style>
-                .entry-header {
-                    padding: 1vh 2vw;
-                }
-                .job-list-entry {
-                    padding: 0;
-                }     
-                .job-list-entry:hover { 
-                    background-color: #e0e0e0;
-                } 
-            </style>
-            <div class="job-list" id="list-elem">
-                <!-- entries to be rendered here -->
-            </div>
-        `;
-        let list = template.content.querySelector("#list-elem");
+        let list = document.createElement("div")
+        list.classList.add("job-list")
         this.getJobListEntries().forEach(entry => {
             list.appendChild(entry);
         });
 
         this.attachShadow({mode: "open"});
-        this.shadowRoot.appendChild(template.content);
+        this.shadowRoot.adoptedStyleSheets = [d_theme, reset, style];
+        this.shadowRoot.appendChild(list);
     }
 
     getJobListEntries() {
         let items = [];
         this._data.forEach(elem => {
             let div = document.createElement("div");
-            div.setAttribute("class", "job-list-entry");
+            div.classList.add("job-list-entry");
+            div.onclick = this.entryClicked(div);
             let header = document.createElement("h1");
-            header.setAttribute("class", "entry-header");
+            header.classList.add("entry-header");
             header.innerText = elem.company;
             div.appendChild(header);
 
@@ -58,6 +46,16 @@ export class JobList extends HTMLElement {
             items.push(div);
         });
         return items;
+    }
+
+    entryClicked(elem) {
+        return () => {
+            if (this._activeEntry) {
+                this._activeEntry.classList.remove("selected");
+            }
+            elem.classList.add("selected");
+            this._activeEntry = elem;
+        }
     }
 }
 

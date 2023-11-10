@@ -1,0 +1,16 @@
+
+.entry-header {
+    padding: 1vh 2vw;
+}
+
+.job-list-entry {
+    padding: 0;
+}
+
+.job-list-entry:not(.selected):hover {
+    background-color: var(--hovor-color);
+}
+
+.selected {
+    background-color: var(--selected-color);
+}
