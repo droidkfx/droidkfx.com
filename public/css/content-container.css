@@ -1,0 +1,15 @@
+.content {
+    display: flex;
+    flex-direction: column;
+    max-height: 85vh;
+    height: 85vh;
+    padding: 2vh 2vw;
+}
+
+.content-detail > p {
+    white-space: normal;
+}
+
+.content-detail > p + p {
+    margin-top: 20px;
+}

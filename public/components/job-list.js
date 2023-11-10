@@ -6,10 +6,12 @@ import style from "/css/job-list.css" assert {type: "css"}
 console.debug("Loading job-list.js");
 
 export class JobList extends HTMLElement {
-    constructor(data) {
+    constructor(data, companySelectedCallback) {
         super();
 
         this._data = data;
+        this._companySelectedCallback = companySelectedCallback || (() => {
+        });
         this._activeEntry = null;
     }
     
@@ -28,10 +30,20 @@ export class JobList extends HTMLElement {
 
     getJobListEntries() {
         let items = [];
+        let first = true;
         this._data.forEach(elem => {
             let div = document.createElement("div");
             div.classList.add("job-list-entry");
-            div.onclick = this.entryClicked(div);
+            div.onclick = this.entryClicked(div, elem.company);
+            if (first) {
+                div.classList.add("selected");
+                first = false;
+                div.onclick();
+            } else {
+                div.appendChild(document.createElement("hr"));
+                div.appendChild(document.createElement("hr"));
+            }
+
             let header = document.createElement("h1");
             header.classList.add("entry-header");
             header.innerText = elem.company;
@@ -41,18 +53,20 @@ export class JobList extends HTMLElement {
                 div.appendChild(new JobEntry(position));
             });
 
-            div.appendChild(document.createElement("hr"));
-            div.appendChild(document.createElement("hr"));
             items.push(div);
         });
         return items;
     }
 
-    entryClicked(elem) {
+    entryClicked(elem, company) {
         return () => {
             if (this._activeEntry) {
                 this._activeEntry.classList.remove("selected");
             }
+            if (this._activeEntry === elem) {
+                return;
+            }
+            this._companySelectedCallback(company);
             elem.classList.add("selected");
             this._activeEntry = elem;
         }
