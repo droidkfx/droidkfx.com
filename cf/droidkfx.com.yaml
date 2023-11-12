@@ -1,0 +1,10 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Description: "Droidkfx.com cloudformation template"
+Resources:
+  SiteContentBucket:
+    Type: AWS::S3::Bucket
+    DeletionPolicy: Retain
+    Properties:
+      BucketName: "www.droidkfx.com"
+
+
