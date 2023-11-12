@@ -60,11 +60,11 @@ export class JobList extends HTMLElement {
 
     entryClicked(elem, company) {
         return () => {
-            if (this._activeEntry) {
-                this._activeEntry.classList.remove("selected");
-            }
             if (this._activeEntry === elem) {
                 return;
+            }
+            if (this._activeEntry) {
+                this._activeEntry.classList.remove("selected");
             }
             this._companySelectedCallback(company);
             elem.classList.add("selected");
