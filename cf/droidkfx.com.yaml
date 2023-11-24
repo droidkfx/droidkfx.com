@@ -6,5 +6,61 @@ Resources:
     DeletionPolicy: Retain
     Properties:
       BucketName: "www.droidkfx.com"
+      WebsiteConfiguration:
+        IndexDocument: index.html
+
+  # Based on the implementation here: https://cjohansen.no/aws-apigw-proxy-cloudformation/
+  GatewayApi:
+    Type: 'AWS::ApiGateway::RestApi'
+    Properties:
+      Name: DroidKfxApi
+  ProxyResource:
+    Type: 'AWS::ApiGateway::Resource'
+    Properties:
+      ParentId: !GetAtt GatewayApi.RootResourceId
+      RestApiId: !Ref GatewayApi
+      PathPart: '{proxy+}'
+  RootMethod:
+    Type: 'AWS::ApiGateway::Method'
+    Properties:
+      HttpMethod: ANY
+      ResourceId: !GetAtt GatewayApi.RootResourceId
+      RestApiId: !Ref GatewayApi
+      AuthorizationType: NONE
+      Integration:
+        IntegrationHttpMethod: ANY
+        Type: HTTP_PROXY
+        Uri: !GetAtt SiteContentBucket.WebsiteURL
+        PassthroughBehavior: WHEN_NO_MATCH
+        IntegrationResponses:
+          - StatusCode: 200
+  ProxyMethod:
+    Type: 'AWS::ApiGateway::Method'
+    Properties:
+      HttpMethod: ANY
+      ResourceId: !Ref ProxyResource
+      RestApiId: !Ref GatewayApi
+      AuthorizationType: NONE
+      RequestParameters:
+        method.request.path.proxy: true
+      Integration:
+        CacheKeyParameters:
+          - 'method.request.path.proxy'
+        RequestParameters:
+          integration.request.path.proxy: 'method.request.path.proxy'
+        IntegrationHttpMethod: ANY
+        Type: HTTP_PROXY
+        Uri: !Join [ '/', [ !GetAtt SiteContentBucket.WebsiteURL, '{proxy}' ] ]
+        PassthroughBehavior: WHEN_NO_MATCH
+        IntegrationResponses:
+          - StatusCode: 200
+  Deployment:
+    DependsOn:
+      - RootMethod
+      - ProxyMethod
+    Type: 'AWS::ApiGateway::Deployment'
+    Properties:
+      RestApiId: !Ref GatewayApi
+      StageName: dev
 
 
