@@ -8,6 +8,19 @@ Resources:
       BucketName: "www.droidkfx.com"
       WebsiteConfiguration:
         IndexDocument: index.html
+  ContentBucketPolicy:
+    Type: AWS::S3::BucketPolicy
+    Properties:
+      Bucket: !Ref SiteContentBucket
+      PolicyDocument:
+        Statement:
+          - Action:
+              - s3:GetObject
+              - s3:ListBucket
+            Effect: Allow
+            Resource: !Join [ '', [ 'arn:aws:s3:::', !Ref SiteContentBucket, '/*' ] ]
+            Principal:
+              AWS: 'apigateway.amazonaws.com'
 
   # Based on the implementation here: https://cjohansen.no/aws-apigw-proxy-cloudformation/
   GatewayApi:
@@ -23,7 +36,7 @@ Resources:
   RootMethod:
     Type: 'AWS::ApiGateway::Method'
     Properties:
-      HttpMethod: ANY
+      HttpMethod: GET
       ResourceId: !GetAtt GatewayApi.RootResourceId
       RestApiId: !Ref GatewayApi
       AuthorizationType: NONE

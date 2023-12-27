@@ -32,18 +32,18 @@ This creates a change set that can be reviewed before applying anything. You can
 running the command it displays after running the above. It will be something like:
 
 ```bash
-aws cloudformation describe-change-set --change-set-name <ARN>
+aws cloudformation describe-change-set --change-set-name $arn
 ```
 
 If you are happy with the changes you can use:
 
 ```bash
-aws cloudformation execute-change-set --change-set-name <ARN>
+aws cloudformation execute-change-set --change-set-name $arn
 ```
 
 If you are unhappy with them or if you no longer need the change set you can use the following command to delete the
 change set:
 
 ```bash
-aws cloudformation delete-change-set --change-set-name <ARN>
+aws cloudformation delete-change-set --change-set-name $arn
 ```
