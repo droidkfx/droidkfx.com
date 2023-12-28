@@ -1,11 +1,26 @@
 AWSTemplateFormatVersion: "2010-09-09"
 Description: "Droidkfx.com cloudformation template"
+Parameters:
+  DomainName:
+    Type: String
+    Description: "Domain name for the website"
+    AllowedPattern: "(?!-)[A-Za-z0-9-.]{1,63}(?<!-)"
+    ConstraintDescription: "Must be a valid domain name."
+#  HostedZoneId:
+#    Type: String
+#    Description: "Hosted zone ID for the domain"
+#    Default: "Z1234567890"
+#    ConstraintDescription: "Must be a valid hosted zone ID."
+Outputs:
+  InternalWebsiteUrl:
+    Description: "URL for website"
+    Value: !GetAtt SiteContentBucket.WebsiteURL
 Resources:
   SiteContentBucket:
     Type: AWS::S3::Bucket
     DeletionPolicy: Retain
     Properties:
-      BucketName: "www.droidkfx.com"
+      BucketName: !Ref DomainName
       WebsiteConfiguration:
         IndexDocument: index.html
   ContentBucketPolicy:
@@ -16,11 +31,11 @@ Resources:
         Statement:
           - Action:
               - s3:GetObject
-              - s3:ListBucket
             Effect: Allow
-            Resource: !Join [ '', [ 'arn:aws:s3:::', !Ref SiteContentBucket, '/*' ] ]
-            Principal:
-              AWS: 'apigateway.amazonaws.com'
+            Resource:
+              - !GetAtt SiteContentBucket.Arn
+              - !Join [ '/', [ !GetAtt SiteContentBucket.Arn, '*' ] ]
+            Principal: '*'
 
   # Based on the implementation here: https://cjohansen.no/aws-apigw-proxy-cloudformation/
   GatewayApi:
